@@ -12,16 +12,16 @@ export default function Home() {
   const shufflePalette = () =>
     setPalette((prev) => [...prev].sort(() => Math.random() - 0.5));
   return (
-    <main className="flex  min-h-screen flex-col items-center justify-center px-4 py-10">
+    <main
+      style={{ backgroundColor: `#${currentColor}` }}
+      className="flex  min-h-screen flex-col items-center justify-center px-4 py-10"
+    >
       <div className="text-center">
-        <h1
-          style={{ color: `#${currentColor}` }}
-          className="text-4xl font-bold tracking-tight sm:text-5xl"
-        >
+        <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">
           Mood Palette Generator
         </h1>
-        <p className="mt-3 text-slate-400">
-          Pick a mood and select to change the title color
+        <p className="mt-3 ">
+          Pick a mood and select to change the background color
         </p>
       </div>
       <MoodSelector
