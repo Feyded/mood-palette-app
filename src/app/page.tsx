@@ -1,0 +1,33 @@
+"use client";
+import { useState } from "react";
+import MoodSelector from "./components/MoodSelector";
+import PaletteCard from "./components/PaletteCard";
+
+export default function Home() {
+  const [palette, setPalette] = useState<string[]>([]);
+  const [currentColor, setCurrentColor] = useState<string | null>(null);
+
+  const shufflePalette = () =>
+    setPalette((prev) => [...prev].sort(() => Math.random() - 0.5));
+  return (
+    <main className="flex  min-h-screen flex-col items-center justify-center px-4 py-10">
+      <div className="text-center">
+        <h1
+          style={{ color: `#${currentColor}` }}
+          className="text-4xl font-bold tracking-tight sm:text-5xl"
+        >
+          Mood Palette Generator
+        </h1>
+        <p className="mt-3 text-slate-400">
+          Pick a mood and select to change the title color
+        </p>
+      </div>
+      <MoodSelector
+        onSelect={setPalette}
+        onShuffle={shufflePalette}
+        palette={palette}
+      />
+      <PaletteCard colors={palette} onSelect={setCurrentColor} />
+    </main>
+  );
+}
