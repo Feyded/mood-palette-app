@@ -2,10 +2,12 @@
 import { useState } from "react";
 import MoodSelector from "./components/MoodSelector";
 import PaletteCard from "./components/PaletteCard";
+import StackModal from "./components/StackModal";
 
 export default function Home() {
   const [palette, setPalette] = useState<string[]>([]);
   const [currentColor, setCurrentColor] = useState<string | null>(null);
+  const [modalClosed, setModalClosed] = useState(false);
 
   const shufflePalette = () =>
     setPalette((prev) => [...prev].sort(() => Math.random() - 0.5));
@@ -28,6 +30,7 @@ export default function Home() {
         palette={palette}
       />
       <PaletteCard colors={palette} onSelect={setCurrentColor} />
+      {!modalClosed && <StackModal onClose={() => setModalClosed(true)} />}
     </main>
   );
 }
